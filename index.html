@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ember &amp; Bean — Coffee House</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,800;1,9..144,400&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Reusable cup drawing. Colours are set per drink with CSS variables. -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="cup" viewBox="0 0 120 170">
+      <rect x="76" y="2" width="6" height="78" rx="3" fill="#2a1a12" transform="rotate(10 79 40)"/>
+      <path d="M22 44 H98 L90 152 Q89 158 83 158 H37 Q31 158 30 152 Z" fill="rgba(255,255,255,.16)" stroke="rgba(255,255,255,.45)" stroke-width="2"/>
+      <path d="M25 66 H95 L90 150 Q89 154 84 154 H36 Q31 154 30 150 Z" fill="var(--liquid)"/>
+      <path d="M25 66 H95 L93 96 Q60 108 27 96 Z" fill="var(--top)"/>
+      <rect x="38" y="76" width="20" height="20" rx="4" fill="#fff" opacity=".22" transform="rotate(-10 48 86)"/>
+      <rect x="62" y="102" width="20" height="20" rx="4" fill="#fff" opacity=".2" transform="rotate(14 72 112)"/>
+      <rect x="36" y="118" width="18" height="18" rx="4" fill="#fff" opacity=".18" transform="rotate(8 45 127)"/>
+      <ellipse cx="60" cy="44" rx="40" ry="7" fill="var(--foam)"/>
+    </symbol>
+  </svg>
+
+  <header class="nav">
+    <!-- Hidden checkbox: the burger label toggles it, CSS reads its state -->
+    <input type="checkbox" id="menu-toggle">
+
+    <a class="logo" href="#top">Ember<span>&amp;</span>Bean</a>
+    <nav>
+      <a href="#menu">Menu</a>
+      <a href="#special">Special</a>
+      <a href="#visit">Visit</a>
+    </nav>
+    <a class="btn btn-small" href="#menu">Order now</a>
+
+    <label for="menu-toggle" class="burger" aria-label="Toggle menu"><span></span></label>
+  </header>
+
+  <main id="top">
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-text">
+        <p class="eyebrow">Small-batch · Abuja</p>
+        <h1>Brewed slow.<br><em>Poured proud.</em></h1>
+        <p class="lead">Single-origin beans, roasted every morning and made exactly how you like it. Grab one hot, grab one iced, just don't grab one late.</p>
+        <div class="hero-actions">
+          <a class="btn" href="#menu">See the menu</a>
+          <a class="btn btn-ghost" href="#visit">Find us</a>
+        </div>
+        <ul class="stats">
+          <li><strong>12</strong> signature drinks</li>
+          <li><strong>4.9★</strong> from regulars</li>
+          <li><strong>6am</strong> doors open</li>
+        </ul>
+      </div>
+
+      <div class="hero-art" aria-hidden="true">
+        <div class="blob"></div>
+        <svg class="hero-cup" style="--liquid:#9a5b32;--top:#e8cfa8;--foam:#f6ead7"><use href="#cup"/></svg>
+        <span class="steam s1"></span><span class="steam s2"></span><span class="steam s3"></span>
+        <div class="tag tag-a">Cold brew<br><b>₦3,500</b></div>
+        <div class="tag tag-b">Fresh roasted<br><b>today</b></div>
+      </div>
+    </section>
+
+    <!-- TICKER -->
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker-track">
+        <span>Espresso</span><span>✦</span><span>Latte</span><span>✦</span><span>Cold Brew</span><span>✦</span><span>Mocha</span><span>✦</span><span>Flat White</span><span>✦</span>
+        <span>Espresso</span><span>✦</span><span>Latte</span><span>✦</span><span>Cold Brew</span><span>✦</span><span>Mocha</span><span>✦</span><span>Flat White</span><span>✦</span>
+      </div>
+    </div>
+
+    <!-- MENU -->
+    <section class="menu" id="menu">
+      <div class="section-head">
+        <h2>The <em>menu</em></h2>
+        <p>Pick a vibe, we'll handle the rest.</p>
+      </div>
+
+      <input type="radio" name="f" id="f-all" checked>
+      <input type="radio" name="f" id="f-iced">
+      <input type="radio" name="f" id="f-hot">
+      <input type="radio" name="f" id="f-milk">
+
+      <div class="filters">
+        <label for="f-all">All</label>
+        <label for="f-iced">Iced</label>
+        <label for="f-hot">Hot</label>
+        <label for="f-milk">Milky</label>
+      </div>
+
+      <div class="grid">
+
+        <article class="card" data-t="hot">
+          <div class="card-art" style="--liquid:#2b140b;--top:#4a2616;--foam:#c98c52"><svg><use href="#cup"/></svg></div>
+          <h3>Espresso</h3>
+          <p>Pure, strong, no nonsense.</p>
+          <div class="row"><span class="price">₦2,500</span><button type="button">Add</button></div>
+        </article>
+
+        <article class="card" data-t="hot milk">
+          <div class="card-art" style="--liquid:#b98757;--top:#e9d3b4;--foam:#f7efe2"><svg><use href="#cup"/></svg></div>
+          <h3>Cappuccino</h3>
+          <p>Espresso, steamed milk, thick foam.</p>
+          <div class="row"><span class="price">₦3,200</span><button type="button">Add</button></div>
+        </article>
+
+        <article class="card" data-t="iced milk">
+          <div class="card-art" style="--liquid:#c79a6b;--top:#f2e3cc;--foam:#fbf4e8"><svg><use href="#cup"/></svg></div>
+          <h3>Iced Latte</h3>
+          <p>Espresso, cold milk, lots of ice.</p>
+          <div class="row"><span class="price">₦3,800</span><button type="button">Add</button></div>
+        </article>
+
+        <article class="card" data-t="iced">
+          <div class="card-art" style="--liquid:#1f0f08;--top:#3b1f12;--foam:#a8693a"><svg><use href="#cup"/></svg></div>
+          <h3>Cold Brew</h3>
+          <p>Steeped 18 hours. Smooth and bold.</p>
+          <div class="row"><span class="price">₦3,500</span><button type="button">Add</button></div>
+        </article>
+
+        <article class="card" data-t="hot milk">
+          <div class="card-art" style="--liquid:#d2b08a;--top:#efe0c8;--foam:#fff8ee"><svg><use href="#cup"/></svg></div>
+          <h3>Flat White</h3>
+          <p>Velvety milk, double ristretto.</p>
+          <div class="row"><span class="price">₦3,400</span><button type="button">Add</button></div>
+        </article>
+
+        <article class="card" data-t="iced milk">
+          <div class="card-art" style="--liquid:#6b3a22;--top:#d8a46c;--foam:#f1d9b5"><svg><use href="#cup"/></svg></div>
+          <h3>Caramel Macchiato</h3>
+          <p>Vanilla, milk, espresso, caramel drizzle.</p>
+          <div class="row"><span class="price">₦4,200</span><button type="button">Add</button></div>
+        </article>
+
+        <article class="card" data-t="hot milk">
+          <div class="card-art" style="--liquid:#4a2a1c;--top:#7a4a30;--foam:#e6cfae"><svg><use href="#cup"/></svg></div>
+          <h3>Mocha</h3>
+          <p>Espresso meets dark chocolate.</p>
+          <div class="row"><span class="price">₦3,900</span><button type="button">Add</button></div>
+        </article>
+
+        <article class="card" data-t="iced">
+          <div class="card-art" style="--liquid:#8a4f2b;--top:#c98a4a;--foam:#f3dfbf"><svg><use href="#cup"/></svg></div>
+          <h3>Iced Americano</h3>
+          <p>Espresso over cold water and ice.</p>
+          <div class="row"><span class="price">₦2,900</span><button type="button">Add</button></div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- SPECIAL -->
+    <section class="special" id="special">
+      <div class="special-art" aria-hidden="true">
+        <svg class="special-cup" style="--liquid:#b57a45;--top:#f0d7b0;--foam:#fff3df"><use href="#cup"/></svg>
+      </div>
+      <div class="special-text">
+        <p class="eyebrow dark">New this week</p>
+        <h2>Coconut <em>Cold Foam</em> Latte</h2>
+        <p>Espresso over ice with a cloud of sweet coconut foam on top. Tastes like a beach day, drinks like a coffee.</p>
+        <div class="special-price">
+          <span class="now">₦4,500</span>
+          <span class="was">₦5,200</span>
+          <span class="badge">20% off</span>
+        </div>
+        <a class="btn btn-dark" href="#menu">Order this one</a>
+      </div>
+    </section>
+
+    <!-- REVIEWS -->
+    <section class="reviews">
+      <h2>Loved by <em>regulars</em></h2>
+      <div class="review-grid">
+        <blockquote>
+          <p>"The cold brew is dangerous. I now plan my whole morning around it."</p>
+          <cite>Tobi, designer</cite>
+        </blockquote>
+        <blockquote>
+          <p>"Best flat white in town. Cozy spot to get work done too."</p>
+          <cite>Amaka, student</cite>
+        </blockquote>
+        <blockquote>
+          <p>"Came for the coffee, stayed for the playlist."</p>
+          <cite>David, regular</cite>
+        </blockquote>
+      </div>
+    </section>
+
+    <!-- VISIT -->
+    <section class="visit" id="visit">
+      <div class="visit-card">
+        <h3>Opening hours</h3>
+        <ul>
+          <li><span>Mon – Fri</span><span>6:00 – 20:00</span></li>
+          <li><span>Saturday</span><span>7:00 – 22:00</span></li>
+          <li><span>Sunday</span><span>9:00 – 18:00</span></li>
+        </ul>
+      </div>
+      <div class="visit-card">
+        <h3>Find us</h3>
+        <p>12 Roast Avenue,<br>Bwari, Abuja</p>
+        <p class="muted">Free Wi-Fi · Cozy corners · Dogs welcome</p>
+      </div>
+      <div class="visit-card">
+        <h3>Say hi</h3>
+        <p>hello@emberandbean.com<br>+234 800 000 0000</p>
+        <p class="muted">@emberandbean</p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <form class="signup" onsubmit="return false">
+      <input type="email" placeholder="Your email for free coffee Fridays" required>
+      <button class="btn" type="submit">Join</button>
+    </form>
+    <p>© 2026 Ember &amp; Bean. Made with coffee and questionable amounts of caffeine.</p>
+  </footer>
+
+</body>
+</html>
