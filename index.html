@@ -11,6 +11,10 @@
 </head>
 <body>
 
+  <!-- Hidden checkbox = the menu's on/off memory. It lives at the top of <body>
+       so the header AND the backdrop (both later siblings) can react to it. -->
+  <input type="checkbox" id="menu-toggle">
+
   <!-- Reusable cup drawing. Colours are set per drink with CSS variables. -->
   <svg width="0" height="0" style="position:absolute" aria-hidden="true">
     <symbol id="cup" viewBox="0 0 120 170">
@@ -26,19 +30,20 @@
   </svg>
 
   <header class="nav">
-    <!-- Hidden checkbox: the burger label toggles it, CSS reads its state -->
-    <input type="checkbox" id="menu-toggle">
-
     <a class="logo" href="#top">Ember<span>&amp;</span>Bean</a>
     <nav>
       <a href="#menu">Menu</a>
       <a href="#special">Special</a>
       <a href="#visit">Visit</a>
     </nav>
+    <!-- Desktop only: hidden on mobile (the mobile version lives in the footer) -->
     <a class="btn btn-small" href="#menu">Order now</a>
 
     <label for="menu-toggle" class="burger" aria-label="Toggle menu"><span></span></label>
   </header>
+
+  <!-- Invisible click-catcher behind the open menu. Clicking it unticks the checkbox. -->
+  <label for="menu-toggle" class="backdrop" aria-hidden="true"></label>
 
   <main id="top">
 
@@ -218,12 +223,23 @@
   </main>
 
   <footer>
+    <!-- Mobile only: replaces the header button on small screens -->
+    <a class="btn footer-order" href="#menu">Order now</a>
+
     <form class="signup" onsubmit="return false">
       <input type="email" placeholder="Your email for free coffee Fridays" required>
       <button class="btn" type="submit">Join</button>
     </form>
     <p>© 2026 Ember &amp; Bean. Made with coffee and questionable amounts of caffeine.</p>
   </footer>
+
+  <!-- Optional: closes the menu after tapping a link. CSS alone can't untick a checkbox on link clicks. -->
+  <script>
+    const toggle = document.getElementById("menu-toggle");
+    document.querySelectorAll(".nav nav a").forEach(function (link) {
+      link.addEventListener("click", function () { toggle.checked = false; });
+    });
+  </script>
 
 </body>
 </html>
